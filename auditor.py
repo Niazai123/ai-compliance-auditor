@@ -2,6 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from utils import industry_context_map, region_context_map
+import json
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -36,7 +37,8 @@ Respond ONLY in valid JSON format:
 """
 
 def get_audit_response(prompt):
-    response = client.chat.completions.create(
+  try:
+     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
             {"role": "system", "content": "You are CulturalGuard AI, an expert in global cultural compliance auditing."},
@@ -46,4 +48,7 @@ def get_audit_response(prompt):
         max_tokens=3000,
        
     )
-    return response.choices[0].message.content
+     return response.choices[0].message.content.strip()
+  except Exception as e:
+        return json.dumps({"error": str(e)})
+          

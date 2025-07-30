@@ -19,5 +19,6 @@ region_context_map = {
     'latin_america': 'Hispanic/Latino values',
     'india': 'Caste sensitivity, religious diversity',
     'china': 'Censorship and harmony norms',
-    'global': 'universal cultural sensitivity standards'
+    'global': 'universal cultural sensitivity standards',
+    'pakistan': 'Pakistani cultural and religious sensitivities'
 }
